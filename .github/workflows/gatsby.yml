@@ -32,11 +32,14 @@ defaults:
 jobs:
   # Build job
   build:
+    environment: github-pages
     runs-on: ubuntu-latest
-    env:
+     env:
           HOST_NAME: Earthly
           ENV_TEST: ${{ vars.ENVTEST }}
           SECRET_TEST: ${{secrets.TEST }}
+          ENVVAR: ${{ vars.ENVVAR }}
+          SECRETENV: ${{ secrets.SECRETENV }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -46,6 +49,10 @@ jobs:
         run: echo "EnvTest $ENV_TEST"
       - name: Print secret test
         run: echo "SecretTest $SECRET_TEST"
+      - name: Print secret test
+        run: echo "SecretTest $ENVVAR"
+      - name: Print secret test
+        run: echo "SecretTest $SECRETENV"
       - name: Detect package manager
         id: detect-package-manager
         run: |
