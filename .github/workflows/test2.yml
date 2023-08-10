@@ -32,6 +32,7 @@ defaults:
 jobs:
   # Build job
   build:
+    environment: github-pages
     runs-on: ubuntu-latest
     env:
           HOST_NAME: Earthly
